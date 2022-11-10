@@ -1,0 +1,95 @@
+:root {
+    --x-padding: 6.5rem;
+    --navbar-height: 4.7rem;
+    --primary-color: #1ea4ce;
+    --secondary-color: #147594;
+  }
+  
+
+
+.container *{
+  border-radius: 2px;
+}
+  
+
+  .navbar {
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    height: var(--navbar-height);
+    padding: 0 var(--x-padding);
+  }
+    
+  .navbar > .button {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    color: white;
+    padding: 0 1.80rem;
+    background-color: var(--secondary-color);
+    z-index: 1;
+    cursor: pointer;
+  }
+  
+  
+  .navbar-logo {
+    display: table-cell;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+  
+  .container {
+    
+    display: grid;
+    padding: 1rem var(--x-padding);
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 18px;
+    grid-auto-flow: row;
+  }
+  
+  .basket {
+    grid-area: 1 / 10 / 6 / 13;
+    border: 8px solid var(--primary-color);
+  }
+  
+  .products {
+    grid-area: 1 / 4 / 6 / 10;
+  }
+  
+  .filters {
+    grid-area: 1 / 1 / 6 / 4;
+  }
+  
+.basket,.products,.filters{
+  /* border: 1px solid red; */
+  height: 100vh;
+  background-color: white;
+}
+  
+  /* For presentation only, will be deleted later*/
+  /* .container * {
+    background-color: white;
+    position: relative;
+  }
+  
+  .container *:after {
+    content: attr(class);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  } */
+  
+
+  .footer{
+  
+}
