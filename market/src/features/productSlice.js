@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { GetAll as GetProduts } from "../../services/items";
+import { GetAll as GetProduts ,GetPerView } from "../services/items";
 
 //products Slice
 const initialState = {
@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const getItems = createAsyncThunk("getItems/api", async () => {
-  const resp = await GetProduts();
+  const resp = await GetPerView();
   return resp.data;
 });
 

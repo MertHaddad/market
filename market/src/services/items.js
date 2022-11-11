@@ -4,6 +4,17 @@ import { ITEMS_SERVICE_URL } from "../helpers/constants";
 
 const GetAll = async () => {
   try {
+    // const url = buildURL(ITEMS_SERVICE_URL)
+    const resp = await axios.get(ITEMS_SERVICE_URL);
+    return resp;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
+const GetPerView = async () => {
+  try {
     const url = buildURL(ITEMS_SERVICE_URL)
     const resp = await axios.get(url);
     return resp;
@@ -13,4 +24,4 @@ const GetAll = async () => {
   }
 };
 
-export { GetAll };
+export { GetAll , GetPerView };

@@ -6,9 +6,9 @@ import Options from "./components/options/options";
 import Footer from "./components/footer";
 import "./assets/css/styles.css";
 import "./assets/css/predefined.css";
-import { fillProducts, getItems, selectProducts } from "./features/counter/productSlice";
+import { fillProducts, getItems, selectProducts } from "./features/productSlice";
 import {useDispatch, useSelector} from "react-redux"
-import { getBrands } from "./features/counter/brandSlice";
+import { getBrands } from "./features/brandSlice";
 // import axios from "axios";
 // import { ITEMS_SERVICE_URL,COMPANIES_SERVICE_URL } from "./helpers/constants";
 function App() {
@@ -20,6 +20,7 @@ function App() {
 const dispatch = useDispatch()
 const productsSelector = useSelector(state => state.product.value)
 const brandsSelector = useSelector(state => state.brand.value)
+const querySelector = useSelector(state => state.query.value)
 
 const test = async()=>{
   
@@ -30,8 +31,9 @@ const test = async()=>{
 
 useEffect(()=>{
   test()
-
-},[])
+  console.log("products refreshed");
+  console.log(querySelector);
+},[querySelector])
 
   return (
     <>

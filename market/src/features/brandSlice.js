@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { GetAll as GetBrands } from "../../services/brands";
+import { GetAll as GetBrands } from "../services/brands";
 
 const initialState = {
   value: [],

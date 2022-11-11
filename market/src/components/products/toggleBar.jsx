@@ -1,17 +1,32 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { getItems } from "../../features/counter/productSlice";
-import { addQuery, removeQuery } from "../../features/counter/querySlice";
+import { useDispatch, useSelector } from "react-redux";
+import { getItems } from "../../features/productSlice";
+import { setQuery } from "../../features/querySlice";
 
-const ToggleBar = ()=>{
-    const dispatch = useDispatch()
-    
-    return(
-        <>
-        <button onClick={()=>{dispatch(addQuery("itemType=mug"));dispatch(getItems())}}>mug</button>
-        <button onClick={()=>{dispatch(addQuery("itemType=shirt"));dispatch(getItems())}} >shirt</button>
-        </>
-    )
-}
+const ToggleBar = () => {
+  const dispatch = useDispatch();
+  const select = useSelector((state) => state.query);
 
-export default ToggleBar
+  return (
+    <>
+      <button
+        className={`${select.value.includes("itemType=mug") && "bg-primary"}`}
+        onClick={() => {
+          dispatch(setQuery("itemType=mug"));
+        }}
+      >
+        mug
+      </button>
+      <button
+        className={`${select.value.includes("itemType=shirt") && "bg-primary"}`}
+        onClick={() => {
+          dispatch(setQuery("itemType=shirt"));
+        }}
+      >
+        shirt
+      </button>
+    </>
+  );
+};
+
+export default ToggleBar;
