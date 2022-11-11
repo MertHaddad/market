@@ -1,11 +1,14 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { setQuery } from "../../features/querySlice";
 
 const Sort = () => {
+  const [checkedOption, setCheckedOption] = useState("");
   const dispatch = useDispatch();
+  const selectQuery = useSelector((state) => state.query.value);
+
   const handleChange = (e) => {
-    console.log(e.target.id);
+    setCheckedOption(checkedOption === e.target.id ? "" : e.target.id)
     let query = `_sort=${
       /price/.test(e.target.id) ? "price" : "added"
     }&_order=${/Asc/.test(e.target.id) ? "asc" : "desc"}`;
@@ -24,11 +27,13 @@ const Sort = () => {
       {inputsArray.map((input, i) => (
         <div key={i}>
           <input
-            onChange={handleChange}
+          checked={input.name === checkedOption}
+            onClick={handleChange}
+            // onChange={handleChange}
             id={input.name}
             type="radio"
             value={input.name}
-            className="rounded"
+            className="custom-radio "
             name="sort-radio"
           />
           <label htmlFor={input.name}>{input.label}</label>

@@ -10,11 +10,18 @@ const evaluateQuery = (state, action) => {
   let result = [];
   const sameFilterExists = state.includes(action.payload);
   const typeFilterExists = /itemType/.test(state);
+  const sortFilterExists = /sort/.test(state);
   if (!sameFilterExists && typeFilterExists) {
     const findElement = state.find((x) => /itemType/.test(x));
     const filterResult = state.filter((query) => query !== findElement);
     result = [...filterResult, action.payload];
-  } else if (sameFilterExists) {
+  } 
+  else if (!sameFilterExists && sortFilterExists) {
+    const findElement = state.find((x) => /sort/.test(x));
+    const filterResult = state.filter((query) => query !== findElement);
+    result = [...filterResult, action.payload];
+  } 
+  else if (sameFilterExists) {
     result = state.filter((query) => query !== action.payload);
   } else {
     result = [...state, action.payload];

@@ -161,3 +161,49 @@ button{
   margin: 12px 0;
   padding: 7px;
 }
+
+
+/* checkbox radio styling */
+
+.custom-radio[type="radio"]{
+  appearance: none;
+  border: 1px solid #d3d3d3;
+  width: 18px;
+  height: 18px;
+  content: none;
+  outline: none;
+  border-radius:100%;
+  margin: 0;
+  
+}
+
+.custom-radio[type="radio"]:checked {
+ appearance: none;
+ border-radius:100%;
+ outline: none;
+ padding: 0;
+ content: none;
+ border: 0
+}
+
+.custom-radio[type="radio"]:checked::before{
+ position: absolute;
+ background:transparent ;
+ accent-color:var(--primary-color);
+ border-radius:100%;
+ color: var(--primary-color) !important;
+ content: "\00A0\2713\00A0" !important;
+ border: 2px solid var(--primary-color);
+ transform: rotate(20deg);
+ font-weight: bolder;
+ font-size: 13px;
+}
+
+
+
+
+/* filter container styles */
+.filter-container{
+  height: 5rem;
+  overflow: scroll;
+}

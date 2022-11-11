@@ -3,6 +3,7 @@ import counterReducer from '../features/counterSlice';
 import productReducer from '../features/productSlice';
 import brandReducer from '../features/brandSlice';
 import queryReducer from '../features/querySlice';
+import allproductsSlice from '../features/allProductsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     product: productReducer,
     brand: brandReducer,
     query: queryReducer,
+    allProducts: allproductsSlice,
   },
 });
