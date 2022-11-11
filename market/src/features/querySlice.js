@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getItems } from "./productSlice";
 
-const initialState = {value : ["?_page=1&_limit=5"],page:1}
+const initialState = {value : ["?_page=1&_limit=16"],page:1}
 
 //if the query has a type filter already it should be deleted before applying the new filter.
 //if the query has the same type filter applied it should get removed.

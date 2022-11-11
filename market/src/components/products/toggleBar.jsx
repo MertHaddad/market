@@ -10,7 +10,7 @@ const ToggleBar = () => {
   return (
     <>
       <button
-        className={`${select.value.includes("itemType=mug") && "bg-primary"}`}
+        className={`toggle-button ${select.value.includes("itemType=mug") && "bg-primary"}`}
         onClick={() => {
           dispatch(setQuery("itemType=mug"));
         }}
@@ -18,7 +18,7 @@ const ToggleBar = () => {
         mug
       </button>
       <button
-        className={`${select.value.includes("itemType=shirt") && "bg-primary"}`}
+        className={`toggle-button ${select.value.includes("itemType=shirt") && "bg-primary"}`}
         onClick={() => {
           dispatch(setQuery("itemType=shirt"));
         }}
