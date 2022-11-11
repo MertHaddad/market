@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { store } from "../app/store";
 import { GetAll } from "../services/items";
 
 //products Slice
@@ -11,24 +12,43 @@ const initialState = {
 };
 
 const getAllTags = (state) => {
-    // const tags = state["value"].map((item) =>{ return {tags:item.tag}});
-    const tags = new Set()
-    for (let item of state.value){
-        tags.add(...item.tags)
-    }
-    const tagsArray = Array.from(tags);
-    console.log(tagsArray);
+  const tags = new Set();
+  for (let item of state.value) {
+    tags.add(...item.tags);
+  }
+  const tagsArray = Array.from(tags);
   return tagsArray;
 };
 
 const calculateStockByTags = (state) => {
-  const tags = state.value.map((item) => item.tag && item.tag);
-  return tags;
+  const stockByTag = [];
+  state.tags.forEach((tag) => {
+    let count = 0;
+    for (let item of state.value) {
+      if (item.tags.includes(tag))count++;
+    }
+    stockByTag.push({
+      tag: tag,
+      products: count,
+    });
+  });
+  return stockByTag;
 };
 
-const calculateStockByBrands = (state) => {
-  const tags = state.value.map((item) =>{ return {tags:item.tag}});
-  return tags;
+const calculateStockByBrands = (state, brands) => {
+  const stockByBrand = [];
+  const brandsArray = brands;
+  brandsArray.forEach((brand) => {
+    let count = 0;
+    for (let item of state.value) {
+      if (item.manufacturer === brand.slug) count++;
+    }
+    stockByBrand.push({
+      brand: brand,
+      products: count,
+    });
+  });
+  return stockByBrand;
 };
 
 export const getAllItems = createAsyncThunk("getAllItems/api", async () => {
@@ -40,9 +60,15 @@ export const allProductsSlice = createSlice({
   name: "allproducts",
   initialState,
   reducers: {
-    getTags: (state) => (state.tags = [...state.tags,getAllTags(state)]),
-    getStockByTags: (state) => (state.tags = calculateStockByTags(state)),
-    getStockByBrands: (state) => (state.tags = calculateStockByBrands(state)),
+    getTags: (state) => {
+      state.tags = getAllTags(state);
+    },
+    getStockByTags: (state) => {
+      state.stockByTag = calculateStockByTags(state);
+    },
+    getStockByBrands: (state, action) => {
+      state.stockByBrand = calculateStockByBrands(state, action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -59,6 +85,7 @@ export const allProductsSlice = createSlice({
   },
 });
 
-export const { getTags,getStockByTags,getStockByBrands } = allProductsSlice.actions;
+export const { getTags, getStockByTags, getStockByBrands } =
+  allProductsSlice.actions;
 export const selectProducts = (state) => state.allproducts.value; //defined in alice name
 export default allProductsSlice.reducer;

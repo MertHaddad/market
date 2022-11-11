@@ -204,6 +204,19 @@ button{
 
 /* filter container styles */
 .filter-container{
-  height: 5rem;
+  padding: 2rem 0 ;
+}
+.filter-body{
+  height: 7rem;
+  padding: 2rem 0 ;
   overflow: scroll;
+  overflow-x: hidden;
+}
+
+input[type="checkbox"]{
+  margin: 5px 2px
+}
+
+label{
+  margin: 5px 2px 
 }

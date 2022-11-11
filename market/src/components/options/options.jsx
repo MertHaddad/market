@@ -8,8 +8,12 @@ const Options = () => {
       <div className="filters">
         <span>Options </span>
             <Sort/>
+            <div className="filter-container">
             <BrandFilter/>
+            </div>
+            <div className="filter-container">
             <TagFilter/>
+            </div>
       </div>
     </>
   );

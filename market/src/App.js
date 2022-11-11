@@ -9,37 +9,37 @@ import "./assets/css/predefined.css";
 import { fillProducts, getItems, selectProducts } from "./features/productSlice";
 import {useDispatch, useSelector} from "react-redux"
 import { getBrands } from "./features/brandSlice";
-import { getAllItems, getTags } from "./features/allProductsSlice";
+import { getAllItems, getStockByBrands, getStockByTags, getTags } from "./features/allProductsSlice";
 
 function App() {
 
 const dispatch = useDispatch()
 const productsSelector = useSelector(state => state.product.value)
-const brandsSelector = useSelector(state => state.brand.value)
+const brandsSelector = useSelector(state => state.brand)
 const querySelector = useSelector(state => state.query.value)
 const tagsSelector = useSelector(state => state.allProducts)
 
-const test = async()=>{
+const test = async(query)=>{
   dispatch(getAllItems())
   // dispatch(getTags())
   
-  dispatch(getItems())
+  dispatch(getItems(query))
   dispatch(getBrands())
    
 }
 
 useEffect(()=>{
-  test()
+  test(querySelector)
   console.log("products refreshed");
-  console.log(querySelector);
-  console.log(tagsSelector);
 },[querySelector])
 
 useEffect(()=>{
-console.log(tagsSelector.status);
 if(tagsSelector.status === "fulfilled"){
     dispatch(getTags())
-
+    dispatch(getStockByTags())
+}
+if(brandsSelector.status === "fulfilled"){
+  dispatch(getStockByBrands(brandsSelector.value))
 }
 },[tagsSelector.status])
 
@@ -49,11 +49,11 @@ if(tagsSelector.status === "fulfilled"){
       <div className="container">
         <h4> 
           products:
-        {productsSelector.length}
+        {/* {productsSelector.length} */}
         </h4>
         <h4> 
           brands:
-        {brandsSelector.length}
+        {/* {brandsSelector.value.length} */}
         </h4>
         <Basket/>
         <Products/>

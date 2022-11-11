@@ -7,6 +7,7 @@ export const buildURL = (baseURL) => {
     for (const query of queries) {
       url += query + "&";
     }
+    console.log(url);
     return url;
   } else return url;
 };

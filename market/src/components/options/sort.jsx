@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { setQuery } from "../../features/querySlice";
 
 const Sort = () => {
   const [checkedOption, setCheckedOption] = useState("");
   const dispatch = useDispatch();
-  const selectQuery = useSelector((state) => state.query.value);
 
   const handleChange = (e) => {
     setCheckedOption(checkedOption === e.target.id ? "" : e.target.id)
