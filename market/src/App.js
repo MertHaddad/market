@@ -9,14 +9,9 @@ import "./assets/css/predefined.css";
 import { fillProducts, getItems, selectProducts } from "./features/productSlice";
 import {useDispatch, useSelector} from "react-redux"
 import { getBrands } from "./features/brandSlice";
-// import axios from "axios";
-// import { ITEMS_SERVICE_URL,COMPANIES_SERVICE_URL } from "./helpers/constants";
+
 function App() {
-//   const getProducts = async()=>{
-//   let res = await axios.get(COMPANIES_SERVICE_URL)
-//   console.log(res.data.length);    
-// }
-// getProducts()
+
 const dispatch = useDispatch()
 const productsSelector = useSelector(state => state.product.value)
 const brandsSelector = useSelector(state => state.brand.value)
