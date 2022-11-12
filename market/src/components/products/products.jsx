@@ -7,7 +7,7 @@ const Products = ()=>{
     return(
         <>
         <div className="products">
-        <h5>products </h5>
+        <span className="d-block fs-2">products </span>
         <ToggleBar/>
         <Item/>
         <Pagination/>

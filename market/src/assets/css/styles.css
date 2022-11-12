@@ -10,6 +10,10 @@
 .container *{
   border-radius: 2px;
 }
+
+button{
+  border: 0;
+}
   
 
   .navbar {
@@ -43,7 +47,7 @@
   }
   
   .container {
-    
+    margin-top: 1.60rem;
     display: grid;
     padding: 1rem var(--x-padding);
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -54,7 +58,7 @@
   
   .basket {
     grid-area: 1 / 10 / 6 / 13;
-    border: 8px solid var(--primary-color);
+    border: 9px solid var(--primary-color);
   }
   
   .products {
@@ -93,3 +97,130 @@
   .footer{
   
 }
+
+
+
+/* product card */
+.product-thumbnail{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 1rem;
+  /* padding: 0.1rem; */
+  border: 1px solid rgba(128, 128, 128, 0.596);
+  border-radius: 12px;
+}
+.product-thumbnail>img:hover{
+  scale: 1.02;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.13);
+}
+.product-title{
+  font-weight: bold;
+  margin: 0.0 0 0.9rem 0;
+}
+.product-price{
+  color: var(--primary-color);
+  font-weight: bold;
+  margin: 0.0rem 0 0.1rem 0;
+
+}
+.product-button{
+  background-color: var(--primary-color);
+  color: white;
+  cursor: pointer;
+}
+.product-button:hover{
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.products-container{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: center;
+}
+
+.product-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* padding: 0.5rem; */
+  margin: 0.3rem 0.6rem;
+  /* display: block; */
+  width: 8rem;
+  /* max-width: 10rem; */
+  /* background-color: rgba(102, 102, 102, 0.158); */
+}
+
+
+
+
+
+.toggle-button{
+  margin: 12px 0;
+  padding: 7px;
+}
+
+
+/* checkbox radio styling */
+
+.custom-radio[type="radio"]{
+  appearance: none;
+  border: 1px solid #d3d3d3;
+  width: 18px;
+  height: 18px;
+  content: none;
+  outline: none;
+  border-radius:100%;
+  margin: 0;
+  
+}
+
+.custom-radio[type="radio"]:checked {
+ appearance: none;
+ border-radius:100%;
+ outline: none;
+ padding: 0;
+ content: none;
+ border: 0
+}
+
+.custom-radio[type="radio"]:checked::before{
+ position: absolute;
+ background:transparent ;
+ accent-color:var(--primary-color);
+ border-radius:100%;
+ color: var(--primary-color) !important;
+ content: "\00A0\2713\00A0" !important;
+ border: 2px solid var(--primary-color);
+ transform: rotate(20deg);
+ font-weight: bolder;
+ font-size: 13px;
+}
+
+
+
+
+/* filter container styles */
+.filter-container{
+  padding: 2rem 0 ;
+}
+.filter-body{
+  height: 7rem;
+  padding: 2rem 0 ;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+input[type="checkbox"],input[type="radio"]{
+  margin: 5px 2px;
+  cursor: pointer;
+}
+
+label{
+  margin: 5px 2px ;
+  cursor: pointer;
+}
+
+

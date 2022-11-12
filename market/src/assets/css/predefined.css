@@ -14,10 +14,53 @@
     color: var(--secondary-color);
 }
 
+.text-white{
+    color: white;
+}
+
 .bg-secondary{
     background-color: var(--secondary-color);
 }
 
 .pointer{
     cursor: pointer;
+}
+
+.d-block{
+    display: block;
+}
+
+.fs-1{
+    font-size: xx-large;
+}
+.fs-2{
+    font-size: x-large;
+}
+.fs-3{
+    font-size: larger;
+}
+.fs-4{
+    font-size: large;
+}
+.fs-5{
+    font-size: medium;
+}
+.fs-6{
+    font-size: small;
+}
+.fs-7{
+    font-size: smaller;
+}
+
+.p-1{
+    padding: 1px;
+}
+.p-2{
+    padding: 2px;
+}
+.p-3{
+    padding: 3px;
+}
+.p-4{
+    padding: 4px;
 }

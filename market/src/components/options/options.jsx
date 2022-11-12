@@ -1,5 +1,6 @@
 import React from "react";
-import Filter from "./filter"
+import BrandFilter from "./brandFilter"
+import TagFilter from "./tagFilter"
 import Sort from "./sort"
 const Options = () => {
   return (
@@ -7,8 +8,12 @@ const Options = () => {
       <div className="filters">
         <span>Options </span>
             <Sort/>
-            <Filter/>
-            <Filter/>
+            <div className="filter-container">
+            <BrandFilter/>
+            </div>
+            <div className="filter-container">
+            <TagFilter/>
+            </div>
       </div>
     </>
   );
