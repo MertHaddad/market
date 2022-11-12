@@ -19,14 +19,14 @@ const ToggleBar = () => {
     <>
       <button
       name="itemType=mug"
-        className={`toggle-button ${selectQuery.includes("itemType=mug") && "bg-primary text-white"}`}
+        className={`toggle-button pointer ${selectQuery.includes("itemType=mug") ? "bg-primary text-white" : "secondary-button"}`}
         onClick={handleChange}
       >
         mug
       </button>
       <button
       name="itemType=shirt"
-        className={`toggle-button ${selectQuery.includes("itemType=shirt") && "bg-primary text-white"}`}
+        className={`toggle-button pointer ${selectQuery.includes("itemType=shirt") ? "bg-primary text-white" : "secondary-button"}`}
         onClick={handleChange}
       >
         shirt

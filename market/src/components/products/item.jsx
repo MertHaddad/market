@@ -15,7 +15,8 @@ const Item = () => {
           <div className="product-card" key={i}>
             <p className="product-thumbnail">
               <img
-                width={90}
+                width={85}
+                height={85}
                 alt=""
                 src={require(`./../../assets/img/thumbnails/thumbnail${
                   item.name.length + Math.floor(item.price) - 6 - i

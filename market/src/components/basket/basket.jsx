@@ -1,24 +1,27 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector} from "react-redux";
+import Counter from "./counter";
+const Basket = () => {
+  const selectBasket = useSelector((state) => state.basket);
 
-const Basket = ()=>{
-    const basketItems = useSelector(state=>state.basket.basketProducts)
-    return(
-        <>
-        <div className="basket">
-            {basketItems.map((item,i)=>
-        <div key={i} className="basket-item">
-            
-        <span>{item.name}</span>
-        <span>₺{item.price}</span>
-        <span>{item.amount}</span>
-            
-        </div>
-            )}
+  return (
+    <>
+      <div className="basket">
+        {selectBasket.basketProducts.map((item, i) => (
+          <div key={i} className="basket-item">
+            <span>{item.name}</span>
+            <Counter  product={item} />
+            <span className="d-block text-primary text-bold">
+              ₺{item.price}
+            </span>
+            <span>{item.amount}</span>
+            <hr/>
+          </div>
+        ))}
+        <button className="basket-button" >₺{Number(selectBasket.payment).toFixed(2)}</button>
+      </div>
+    </>
+  );
+};
 
-        </div>
-        </>
-    )
-}
-
-export default Basket
+export default Basket;

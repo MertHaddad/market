@@ -14,6 +14,10 @@
     color: var(--secondary-color);
 }
 
+.secondary-button{
+    background-color: var(--secondary-button);
+}
+
 .text-white{
     color: white;
 }
@@ -26,7 +30,11 @@
     color:var(--gray-color);
 }
 .text-dark-gray{
-    color:var(--darkgray-color);
+    color:var(--gray-dark);
+}
+
+.text-darkest-gray{
+    color:var(--gray-darkest);
 }
 
 .pointer{
@@ -45,7 +53,7 @@
     font-size: 20px;
 }
 .fs-2{
-    font-size: x-large;
+    font-size: 15px;
 }
 .fs-3{
     font-size: larger;

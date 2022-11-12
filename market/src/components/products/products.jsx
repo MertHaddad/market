@@ -7,7 +7,7 @@ const Products = ()=>{
     return(
         <>
         <div className="products">
-        <span className="d-block fs-1 text-bold">Products </span>
+        <span className="d-block fs-1 text-bold text-darkest-gray">Products </span>
         <ToggleBar/>
         <Item/>
         <Suspense fallback="..." >
