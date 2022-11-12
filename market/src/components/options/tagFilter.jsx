@@ -8,7 +8,7 @@ const TagsFilter = () => {
 
     const handleChange = (e) => {
         // setCheckedOption(checkedOption === e.target.id ? "" : e.target.id)
-        let query = `tags_like=\\b${e.target.id}\\b`;
+        let query = `tags_like=(?<!\\s)\\b${e.target.id}\\b(?!\\s)`;
         dispatch(setQuery(query));
       };
 
