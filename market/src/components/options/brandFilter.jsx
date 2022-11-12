@@ -13,10 +13,6 @@ const BrandFilter = () => {
   const selectBrand = useSelector((state) => state.allProducts.stockByBrand);
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    console.log(selectBrand);
-  },[selectBrand])
-    
   useEffect(() => {
     let res = selectBrand.filter((brand) =>
       brand.brand.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
@@ -37,8 +33,7 @@ const BrandFilter = () => {
   useEffect(() => {
     dispatch(getStockByTags(selected));
     dispatch(getItems(querySelector));
-    dispatch(getFilteredItemsNumber())
-    
+    dispatch(getFilteredItemsNumber());
   }, [selected]);
 
   return (
@@ -48,20 +43,23 @@ const BrandFilter = () => {
         value={search}
         type="text"
         placeholder="Search brand"
+        className="search-bar"
       />
-      <div className="filter-body">
+      <div className="filter-body custom-scrollbar">
         {(searchResults.length ? searchResults : selectBrand).map((brand, i) =>
           brand.products ? (
-            <div key={i}>
+            <div className="filter-item" key={i}>
               <input
                 onChange={handleChange}
                 type="checkbox"
                 name=""
+                className="custom-checkbox"
                 id={brand.brand.slug}
                 defaultChecked={selected.includes(brand.brand.slug)}
               />
-              <label htmlFor={brand.brand.slug}>
-                {brand.brand.name} ({brand.products})
+              <label className="filtering-label" htmlFor={brand.brand.slug}>
+                {brand.brand.name}
+                <span className="text-dark-gray"> ({brand.products})</span>
               </label>
             </div>
           ) : null
