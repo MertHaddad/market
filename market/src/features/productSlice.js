@@ -14,17 +14,6 @@ export const getItems = createAsyncThunk("getItems/api", async (query = []) => {
   return resp.data;
 });
 
-// const localFilter = ({payload})=>{
-//   if(/tags_like=/.test(payload.query)){
-//   let u = payload.query.find((x) => /tags_like=/.test(x));
-//   let tag = u.split("tags_like=")[1].slice(2,-2)
-//   console.log(tag);
-//   let result = payload.res.filter(item => item.tags.includes(tag))
-//   return result
-// }
-// else
-// return payload.res
-// }
 
 export const productSlice = createSlice({
   name: "products",

@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
+import { getItems } from "../../features/productSlice";
 import { setQuery } from "../../features/querySlice";
 
 const Sort = () => {
   const [checkedOption, setCheckedOption] = useState("");
   const dispatch = useDispatch();
-
+  const selectQuery = useSelector(state=>state.query.value)
   const handleChange = (e) => {
     setCheckedOption(checkedOption === e.target.id ? "" : e.target.id)
     let query = `_sort=${
       /price/.test(e.target.id) ? "price" : "added"
     }&_order=${/Asc/.test(e.target.id) ? "asc" : "desc"}`;
     dispatch(setQuery(query));
+    dispatch(getItems(selectQuery))
   };
 
   const inputsArray = [

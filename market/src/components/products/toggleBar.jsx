@@ -5,23 +5,26 @@ import { setQuery } from "../../features/querySlice";
 
 const ToggleBar = () => {
   const dispatch = useDispatch();
-  const select = useSelector((state) => state.query);
+  const selectQuery = useSelector(state=>state.query.value)
+
+  const handleChange=(e)=>{
+    dispatch(setQuery(e.target.name));
+    dispatch(getItems(selectQuery))
+  }
 
   return (
     <>
       <button
-        className={`toggle-button ${select.value.includes("itemType=mug") && "bg-primary text-white"}`}
-        onClick={() => {
-          dispatch(setQuery("itemType=mug"));
-        }}
+      name="itemType=mug"
+        className={`toggle-button ${selectQuery.includes("itemType=mug") && "bg-primary text-white"}`}
+        onClick={handleChange}
       >
         mug
       </button>
       <button
-        className={`toggle-button ${select.value.includes("itemType=shirt") && "bg-primary text-white"}`}
-        onClick={() => {
-          dispatch(setQuery("itemType=shirt"));
-        }}
+      name="itemType=shirt"
+        className={`toggle-button ${selectQuery.includes("itemType=shirt") && "bg-primary text-white"}`}
+        onClick={handleChange}
       >
         shirt
       </button>

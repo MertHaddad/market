@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { store } from "../app/store";
 import { GetAll } from "../services/items";
 
-//products Slice
 const initialState = {
   value: [],
   stockByTag: [],
@@ -20,12 +18,20 @@ const getAllTags = (state) => {
   return tagsArray;
 };
 
-const calculateStockByTags = (state) => {
+const calculateStockByTags = (state, payload) => {
+  const selectedBrands = payload;
   const stockByTag = [];
   state.tags.forEach((tag) => {
     let count = 0;
     for (let item of state.value) {
-      if (item.tags.includes(tag))count++;
+      if (selectedBrands.length) {
+        if (item.tags.includes(tag)) {
+          const evaluateTag = selectedBrands.find(product => selectedBrands.includes(item.manufacturer))
+          if (evaluateTag) count++;
+        }
+      } else {
+        if (item.tags.includes(tag)) count++;
+      }
     }
     stockByTag.push({
       tag: tag,
@@ -35,13 +41,22 @@ const calculateStockByTags = (state) => {
   return stockByTag;
 };
 
-const calculateStockByBrands = (state, brands) => {
+const calculateStockByBrands = (state, action) => {
   const stockByBrand = [];
-  const brandsArray = brands;
+  const brandsArray = action.payload.brands;
   brandsArray.forEach((brand) => {
     let count = 0;
     for (let item of state.value) {
-      if (item.manufacturer === brand.slug) count++;
+      if (action.payload.selected.length) {
+        if (item.manufacturer === brand.slug) {
+          const evaluateTag = action.payload.selected.find((tag) =>
+            item.tags.includes(tag)
+          );
+          if (evaluateTag) count++;
+        }
+      } else {
+        if (item.manufacturer === brand.slug) count++;
+      }
     }
     stockByBrand.push({
       brand: brand,
@@ -63,11 +78,11 @@ export const allProductsSlice = createSlice({
     getTags: (state) => {
       state.tags = getAllTags(state);
     },
-    getStockByTags: (state) => {
-      state.stockByTag = calculateStockByTags(state);
+    getStockByTags: (state, action) => {
+      state.stockByTag = calculateStockByTags(state, action.payload);
     },
     getStockByBrands: (state, action) => {
-      state.stockByBrand = calculateStockByBrands(state, action.payload);
+      state.stockByBrand = calculateStockByBrands(state, action);
     },
   },
   extraReducers: (builder) => {
