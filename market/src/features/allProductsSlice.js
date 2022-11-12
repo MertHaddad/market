@@ -26,7 +26,9 @@ const calculateStockByTags = (state, payload) => {
     for (let item of state.value) {
       if (selectedBrands.length) {
         if (item.tags.includes(tag)) {
-          const evaluateTag = selectedBrands.find(product => selectedBrands.includes(item.manufacturer))
+          const evaluateTag = selectedBrands.find((product) =>
+            selectedBrands.includes(item.manufacturer)
+          );
           if (evaluateTag) count++;
         }
       } else {

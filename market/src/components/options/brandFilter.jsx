@@ -3,16 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { setQuery } from "../../features/querySlice";
 import { getItems } from "../../features/productSlice";
 import { getStockByTags } from "../../features/allProductsSlice";
+import { getFilteredItemsNumber } from "../../features/filteredProducts";
 
 const BrandFilter = () => {
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-
   const [selected, setSelected] = useState([]);
   const querySelector = useSelector((state) => state.query.value);
   const selectBrand = useSelector((state) => state.allProducts.stockByBrand);
   const dispatch = useDispatch();
 
+  useEffect(()=>{
+    console.log(selectBrand);
+  },[selectBrand])
+    
   useEffect(() => {
     let res = selectBrand.filter((brand) =>
       brand.brand.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
@@ -33,6 +37,8 @@ const BrandFilter = () => {
   useEffect(() => {
     dispatch(getStockByTags(selected));
     dispatch(getItems(querySelector));
+    dispatch(getFilteredItemsNumber())
+    
   }, [selected]);
 
   return (

@@ -13,6 +13,17 @@ const GetAll = async () => {
   }
 };
 
+const GetAllFiltered = async ()=>{
+  try {
+    const url = buildURL(ITEMS_SERVICE_URL,true)
+    const resp = await axios.get(url);
+    return resp.data.length;
+  } catch (error) {
+    console.log(error);
+    return 0;
+  }
+};
+
 const GetPerView = async () => {
   try {
     const url = buildURL(ITEMS_SERVICE_URL,false)
@@ -24,4 +35,4 @@ const GetPerView = async () => {
   }
 };
 
-export { GetAll , GetPerView };
+export { GetAll , GetPerView,GetAllFiltered };

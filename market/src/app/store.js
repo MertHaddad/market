@@ -4,6 +4,7 @@ import productReducer from '../features/productSlice';
 import brandReducer from '../features/brandSlice';
 import queryReducer from '../features/querySlice';
 import allproductsSlice from '../features/allProductsSlice';
+import filteredProductsSlice from '../features/filteredProducts';
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     brand: brandReducer,
     query: queryReducer,
     allProducts: allproductsSlice,
+    filteredProducts: filteredProductsSlice,
   },
 });

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector} from "react-redux";
+import { getFilteredItemsNumber } from "../../features/filteredProducts";
 import { getItems } from "../../features/productSlice";
 import { setQuery } from "../../features/querySlice";
 
@@ -14,6 +15,9 @@ const Sort = () => {
     }&_order=${/Asc/.test(e.target.id) ? "asc" : "desc"}`;
     dispatch(setQuery(query));
     dispatch(getItems(selectQuery))
+    dispatch(getFilteredItemsNumber())
+    
+    
   };
 
   const inputsArray = [
