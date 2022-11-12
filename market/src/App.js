@@ -6,61 +6,65 @@ import Basket from "./components/basket/basket";
 import Footer from "./components/footer";
 import "./assets/css/styles.css";
 import "./assets/css/predefined.css";
-import { fillProducts, getItems, selectProducts } from "./features/productSlice";
-import {useDispatch, useSelector} from "react-redux"
+import { getItems } from "./features/productSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { getBrands } from "./features/brandSlice";
-import { getAllItems, getStockByBrands, getStockByTags, getTags } from "./features/allProductsSlice";
+import {
+  getAllItems,
+  getStockByBrands,
+  getStockByTags,
+  getTags,
+} from "./features/allProductsSlice";
+import { getFilteredItemsNumber } from "./features/filteredProducts";
 const Options = React.lazy(() => import("./components/options/options"));
 
 function App() {
+  const dispatch = useDispatch();
+  const brandsSelector = useSelector((state) => state.brand);
+  const querySelector = useSelector((state) => state.query.value);
+  const allProductsSelector = useSelector((state) => state.allProducts);
 
-const dispatch = useDispatch()
-const productsSelector = useSelector(state => state.product.value)
-const brandsSelector = useSelector(state => state.brand)
-const querySelector = useSelector(state => state.query.value)
-const allProductsSelector = useSelector(state => state.allProducts)
+  const test = async (query) => {
+    dispatch(getAllItems());
+    dispatch(getFilteredItemsNumber());
+    dispatch(getItems(query));
+    dispatch(getBrands());
+  };
 
-const test = async(query)=>{
-  dispatch(getAllItems())
-  // dispatch(getTags())
-  dispatch(getItems(query))
-  dispatch(getBrands())
-}
+  useEffect(() => {
+    test(querySelector);
+    console.log("products refreshed");
+  }, []);
 
-useEffect(()=>{
-  test(querySelector)
-  console.log("products refreshed");
-},[])
+  useEffect(() => {
+    if (allProductsSelector.status === "fulfilled") {
+      dispatch(getTags());
+      dispatch(getStockByTags([]));
+    }
+  }, [allProductsSelector.status]);
 
-useEffect(()=>{
-if(allProductsSelector.status === "fulfilled"){
-    dispatch(getTags())
-    dispatch(getStockByTags([]))
-}
-if(brandsSelector.status === "fulfilled"){
-  dispatch(getStockByBrands({brands:brandsSelector.value,selected:[]}))
-}
-},[allProductsSelector.status])
+  useEffect(() => {
+    if (
+      brandsSelector.status === "fulfilled" &&
+      allProductsSelector.status === "fulfilled"
+    ) {
+      dispatch(
+        getStockByBrands({ brands: brandsSelector.value, selected: [] })
+      );
+    }
+  }, [allProductsSelector.status, brandsSelector.status]);
 
   return (
     <>
       <Navbar />
       <div className="container">
-        <h4> 
-          products:
-        {/* {productsSelector.length} */}
-        </h4>
-        <h4> 
-          brands:
-        {/* {brandsSelector.value.length} */}
-        </h4>
-        <Basket/>
+        <Basket />
         <Suspense fallback={<div className="fs-1 text-primay">loading...</div>}>
-        <Products/>
-        <Options/>
+          <Products />
+          <Options />
         </Suspense>
       </div>
-        <Footer/>
+      <Footer />
     </>
   );
 }

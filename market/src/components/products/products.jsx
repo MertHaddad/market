@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ToggleBar from "./toggleBar"
 import Item from "./item"
-import Pagination from "../pagination"
+import Pagination from "../pagination/pagination"
 const Products = ()=>{
 
     return(
@@ -10,7 +10,10 @@ const Products = ()=>{
         <span className="d-block fs-2">products </span>
         <ToggleBar/>
         <Item/>
+        <Suspense fallback="..." >
         <Pagination/>
+
+        </Suspense>
         </div>
         </>
     )

@@ -10,7 +10,6 @@ const initialState = {
 
 export const getItems = createAsyncThunk("getItems/api", async (query = []) => {
   const resp = await GetPerView();
-  console.log(query);
   return resp.data;
 });
 

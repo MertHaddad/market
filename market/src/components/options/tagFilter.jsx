@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getStockByBrands,
-  getStockByTags,
-} from "../../features/allProductsSlice";
-import { getItems } from "../../features/productSlice";
 import { setQuery } from "../../features/querySlice";
+import { getItems } from "../../features/productSlice";
+import { getStockByBrands } from "../../features/allProductsSlice";
+import { getFilteredItemsNumber } from "../../features/filteredProducts";
 
 const TagsFilter = () => {
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [selected, setSelected] = useState([]);
   const querySelector = useSelector((state) => state.query.value);
-
-  const selectBrands = useSelector((state) => state.brand.value);
   const selectTags = useSelector((state) => state.allProducts.stockByTag);
+  const selectBrands = useSelector((state) => state.brand.value);
+
   const dispatch = useDispatch();
   const handleChange = (e) => {
     setSelected(
@@ -30,6 +28,8 @@ const TagsFilter = () => {
     // if(selected.length){
     dispatch(getStockByBrands({ brands: selectBrands, selected: selected }));
     dispatch(getItems(querySelector));
+    dispatch(getFilteredItemsNumber());
+
     // dispatch(getStockByTags(selected))
     // }
   }, [selected]);
