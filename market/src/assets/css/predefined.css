@@ -65,7 +65,7 @@ color: #191919;
     font-size: 15px;
 }
 .fs-3{
-    font-size: larger;
+    font-size: 12px !important;
 }
 .fs-4{
     font-size: large;

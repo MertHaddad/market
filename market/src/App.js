@@ -17,6 +17,7 @@ import {
 } from "./features/allProductsSlice";
 import { getFilteredItemsNumber } from "./features/filteredProducts";
 import Spinner from "./components/spinner";
+import Pagination from "./components/pagination/pagination";
 const Options = React.lazy(() => import("./components/options/options"));
 
 function App() {
@@ -63,9 +64,9 @@ function App() {
         <Basket />
           <Products />
           <Options />
-      <Footer />
         </Suspense>
       </div>
+      <Footer/>
     </>
   );
 }

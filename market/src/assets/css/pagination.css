@@ -1,6 +1,9 @@
 .pagination-container {
     display: flex;
     list-style-type: none;
+    justify-content: center
+
+
 }
 .pagination-container .pagination-item {
     padding: 0 12px;
@@ -15,7 +18,7 @@
     border-radius: 2px;
     line-height: 1.43;
     font-size: 13px;
-    min-width: 32px;
+    min-width: 2rem;
 }
 .pagination-container .pagination-item.dots:hover {
     background-color: transparent;
