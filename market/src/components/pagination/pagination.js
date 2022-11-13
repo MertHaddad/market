@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import classnames from "classnames";
 import { usePagination, DOTS } from "./usePagination";
 import "./../../assets/css/pagination.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,22 +7,26 @@ import { getItems } from "../../features/productSlice";
 const Pagination = () => {
   const dispatch = useDispatch();
   const selectQuery = useSelector((state) => state.query.value);
+  const filteredProducts = useSelector((state) => state.filteredProducts);
   const [currentPage, setCurrentPage] = useState(1);
-  
-  const onPageChange = (p) => {
-    setCurrentPage(p);
-    const query = `_page=${p}&_limit=16`;
-    dispatch(setQuery(query));
-    dispatch(getItems(selectQuery));
-  };
-  
-  const filteredProducts = useSelector(state => state.filteredProducts)
 
-  
+  const onPageChange = (p) => {
+    if (currentPage !== p) {
+      setCurrentPage(p);
+      const query = `_page=${p}&_limit=16`;
+      dispatch(setQuery(query));
+      dispatch(getItems(selectQuery));
+    }
+  };
+
+  useEffect(() => {
+    onPageChange(1);
+  }, [filteredProducts.currentProductNumber]);
+
   let totalCount = filteredProducts.currentProductNumber;
   const siblingCount = 1;
   const pageSize = 16;
-  
+
   const paginationRange = usePagination({
     currentPage,
     totalCount,
@@ -31,7 +34,7 @@ const Pagination = () => {
     pageSize,
   });
 
-  if (currentPage === 0 || ((paginationRange?.length< 2) ) ) {
+  if (currentPage === 0 || paginationRange?.length < 2) {
     return null;
   }
 
@@ -47,13 +50,12 @@ const Pagination = () => {
   return (
     <ul className="pagination-container">
       <li
-        className={classnames("pagination-item", {
-          disabled: currentPage === 1,
-        })}
+        className={`pagination-item ${currentPage === 1 ? "disabled" : ""}
+         )`}
         onClick={onPrevious}
       >
-        <div className="arrow left" />
-        -- Prev
+        {/* <div className="arrow left" /> */}
+        {"<"} Prev 
       </li>
       {paginationRange.map((pageNumber, i) => {
         if (pageNumber === DOTS) {
@@ -67,9 +69,9 @@ const Pagination = () => {
         return (
           <li
             key={i}
-            className={classnames("pagination-item", {
-              selected: pageNumber === currentPage,
-            })}
+            className={`pagination-item ${
+              pageNumber === currentPage ? "selected" : ""
+            }`}
             onClick={() => onPageChange(pageNumber)}
           >
             {pageNumber}
@@ -77,13 +79,13 @@ const Pagination = () => {
         );
       })}
       <li
-        className={classnames("pagination-item", {
-          disabled: currentPage === lastPage,
-        })}
+        className={`pagination-item ${
+          currentPage === lastPage ? "disabled" : ""
+        }`}
         onClick={onNext}
       >
-         Next -- 
-        <div className="arrow right" />
+         Next {">"}
+        {/* <div className="arrow right" /> */}
       </li>
     </ul>
   );

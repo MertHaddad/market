@@ -1,9 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Counter from "./counter";
+import emptyCart from "./../../assets/img/empty-cart.jpg";
 const Basket = () => {
   const selectBasket = useSelector((state) => state.basket);
-
+  
   return (
     <>
       <div className="basket basket-container custom-scrollbar">
@@ -21,7 +22,10 @@ const Basket = () => {
             </div>
           ))
         ) : (
-          <div> Your Cart is empty! start shopping</div>
+          <div className="empty-cart">
+            <img alt="" width={170} src={emptyCart} />
+            
+          </div>
         )}
         {selectBasket.basketProducts.length ? (
           <div className="basket-button-container">
