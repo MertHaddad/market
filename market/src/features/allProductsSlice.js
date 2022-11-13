@@ -20,7 +20,7 @@ const getAllTags = (state) => {
 
 const calculateStockByTags = (state, payload) => {
   const selectedBrands = payload;
-  const stockByTag = [];
+  const stockByTag = [{ tag: "All", products: state.value.length }];
   state.tags.forEach((tag) => {
     let count = 0;
     for (let item of state.value) {
@@ -44,7 +44,12 @@ const calculateStockByTags = (state, payload) => {
 };
 
 const calculateStockByBrands = (state, action) => {
-  const stockByBrand = [];
+  const stockByBrand = [
+    {
+      brand: { name: "All", slug: "all-brands" },
+      products: state.value.length,
+    },
+  ];
   const brandsArray = action.payload.brands;
   brandsArray.forEach((brand) => {
     let count = 0;

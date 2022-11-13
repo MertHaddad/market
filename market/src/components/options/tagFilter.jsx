@@ -15,13 +15,15 @@ const TagsFilter = () => {
 
   const dispatch = useDispatch();
   const handleChange = (e) => {
-    setSelected(
-      selected.includes(e.target.id)
-        ? selected.filter((item) => item !== e.target.id)
-        : [...selected, e.target.id]
-    );
-    let query = `tags_like=(?<!\\s)\\b${e.target.id}\\b(?!\\s)`;
-    dispatch(setQuery(query));
+    if (e.target.id !== "All") {
+      setSelected(
+        selected.includes(e.target.id)
+          ? selected.filter((item) => item !== e.target.id)
+          : [...selected, e.target.id]
+      );
+      let query = `tags_like=(?<!\\s)\\b${e.target.id}\\b(?!\\s)`;
+      dispatch(setQuery(query));
+    } else setSelected([]);
   };
 
   useEffect(() => {
@@ -51,23 +53,32 @@ const TagsFilter = () => {
         className="search-bar"
       />
       <div className="filter-body custom-scrollbar">
-        {(searchResults.length ? searchResults : selectTags).map((tag, i) => (
-          tag.products ? <div key={i}>
-            <input
-              onChange={handleChange}
-              type="checkbox"
-              className="custom-checkbox"
-              name=""
-              id={tag.tag}
-              defaultChecked={selected.includes(tag.tag)}
-            />
-            <label className="filtering-label text-secondary" htmlFor={tag.tag}>
-              {tag.tag} <span className="text-dark-gray ">
-              ({tag.products})
-                </span>
-            </label>
-          </div>
-        :null))}
+        {(searchResults.length ? searchResults : selectTags).map((tag, i) =>
+          tag.products ? (
+            <div key={i}>
+              <input
+                key={selected}
+                onChange={handleChange}
+                type="checkbox"
+                className="custom-checkbox"
+                name=""
+                id={tag.tag}
+                defaultChecked={
+                  tag.tag === "All"
+                    ? !selected.length
+                    : selected.includes(tag.tag)
+                }
+              />
+              <label
+                className="filtering-label text-secondary"
+                htmlFor={tag.tag}
+              >
+                {tag.tag}{" "}
+                <span className="text-dark-gray ">({tag.products})</span>
+              </label>
+            </div>
+          ) : null
+        )}
       </div>
     </>
   );

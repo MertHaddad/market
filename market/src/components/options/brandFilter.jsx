@@ -21,13 +21,15 @@ const BrandFilter = () => {
   }, [search]);
 
   const handleChange = (e) => {
-    setSelected(
-      selected.includes(e.target.id)
-        ? selected.filter((item) => item !== e.target.id)
-        : [...selected, e.target.id]
-    );
-    let query = `manufacturer=${e.target.id}`;
-    dispatch(setQuery(query));
+    if (e.target.id !== "all-brands") {
+      setSelected(
+        selected.includes(e.target.id)
+          ? selected.filter((item) => item !== e.target.id)
+          : [...selected, e.target.id]
+      );
+      let query = `manufacturer=${e.target.id}`;
+      dispatch(setQuery(query));
+    } else setSelected([]);
   };
 
   useEffect(() => {
@@ -50,14 +52,22 @@ const BrandFilter = () => {
           brand.products ? (
             <div className="filter-item" key={i}>
               <input
+                key={selected}
                 onChange={handleChange}
                 type="checkbox"
                 name=""
                 className="custom-checkbox"
                 id={brand.brand.slug}
-                defaultChecked={selected.includes(brand.brand.slug)}
+                defaultChecked={
+                  brand.brand.slug === "all-brands"
+                    ? !selected.length
+                    : selected.includes(brand.brand.slug)
+                }
               />
-              <label className="filtering-label text-secondary" htmlFor={brand.brand.slug}>
+              <label
+                className="filtering-label text-secondary"
+                htmlFor={brand.brand.slug}
+              >
                 {brand.brand.name}
                 <span className="text-dark-gray"> ({brand.products})</span>
               </label>
