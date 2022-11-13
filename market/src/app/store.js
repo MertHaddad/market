@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counterSlice';
+import basketReducer from '../features/basketSlice';
 import productReducer from '../features/productSlice';
 import brandReducer from '../features/brandSlice';
 import queryReducer from '../features/querySlice';
@@ -8,7 +8,7 @@ import filteredProductsSlice from '../features/filteredProducts';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    basket: basketReducer,
     product: productReducer,
     brand: brandReducer,
     query: queryReducer,

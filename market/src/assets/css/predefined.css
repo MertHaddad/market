@@ -11,8 +11,21 @@
 }
 
 .text-secondary{
-    color: var(--secondary-color);
+    color: #525252;
 }
+
+.secondary-button{
+    background-color: var(--secondary-button);
+}
+
+.text-default{
+color: #191919;    
+}
+
+.text-light-white{
+    color: #F2F0FD;
+}
+
 
 .text-white{
     color: white;
@@ -20,6 +33,17 @@
 
 .bg-secondary{
     background-color: var(--secondary-color);
+}
+
+.text-gray{
+    color:var(--gray-color);
+}
+.text-dark-gray{
+    color:var(--gray-dark);
+}
+
+.text-darkest-gray{
+    color:var(--gray-darkest);
 }
 
 .pointer{
@@ -30,11 +54,15 @@
     display: block;
 }
 
+.text-bold{
+    font-weight: 600;
+}
+
 .fs-1{
-    font-size: xx-large;
+    font-size: 20px;
 }
 .fs-2{
-    font-size: x-large;
+    font-size: 15px;
 }
 .fs-3{
     font-size: larger;

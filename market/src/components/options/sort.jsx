@@ -30,7 +30,7 @@ const Sort = () => {
   return (
     <>
       {inputsArray.map((input, i) => (
-        <div key={i}>
+        <div className="filter-item" key={i}>
           <input
           checked={input.name === checkedOption}
             onClick={handleChange}
@@ -38,10 +38,10 @@ const Sort = () => {
             id={input.name}
             type="radio"
             value={input.name}
-            className="custom-radio "
+            className="custom-radio"
             name="sort-radio"
           />
-          <label htmlFor={input.name}>{input.label}</label>
+          <label className="sorting-label text-secondary" htmlFor={input.name}>{input.label}</label>
         </div>
       ))}
     </>

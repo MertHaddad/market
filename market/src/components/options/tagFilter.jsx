@@ -48,19 +48,23 @@ const TagsFilter = () => {
         value={search}
         type="text"
         placeholder="Search tag"
+        className="search-bar"
       />
-      <div className="filter-body">
+      <div className="filter-body custom-scrollbar">
         {(searchResults.length ? searchResults : selectTags).map((tag, i) => (
           <div key={i}>
             <input
               onChange={handleChange}
               type="checkbox"
+              className="custom-checkbox"
               name=""
               id={tag.tag}
               defaultChecked={selected.includes(tag.tag)}
             />
-            <label htmlFor={tag.tag}>
-              {tag.tag} ({tag.products})
+            <label className="filtering-label text-secondary" htmlFor={tag.tag}>
+              {tag.tag} <span className="text-dark-gray ">
+              ({tag.products})
+                </span>
             </label>
           </div>
         ))}
