@@ -46,7 +46,7 @@ const calculateStockByTags = (state, payload) => {
 const calculateStockByBrands = (state, action) => {
   const stockByBrand = [
     {
-      brand: { name: "All", slug: "all-brands" },
+      brand: { name: "All", slug: "uncheck-brands" },
       products: state.value.length,
     },
   ];

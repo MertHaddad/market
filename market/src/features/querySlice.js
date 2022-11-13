@@ -9,7 +9,6 @@ const manageQueries = (que, state, action) => {
     )
   );
   const filterResult = state.filter((x) => x !== findElement);
-  console.log(filterResult);
   const resutlt = [...filterResult, action.payload];
   return resutlt;
 };
@@ -21,8 +20,13 @@ const evaluateQuery = (state, action) => {
   const typeFilterExists =
     /itemType/.test(state) && /itemType/.test(action.payload);
   const sortFilterExists = /sort/.test(state) && /sort/.test(action.payload);
-
-  if (sameFilterExists) {
+  if (/All/.test(action.payload) || /uncheck-brands/.test(action.payload)) {
+    if (/All/.test(action.payload)) {
+      result = state.filter((query) => !/tags_like/.test(query));
+    } else {
+      result = state.filter((query) => !/manufacturer/.test(query));
+    }
+  } else if (sameFilterExists) {
     result = state.filter((query) => query !== action.payload);
   } else if (pageChanged) {
     result = manageQueries("_page", state, action);

@@ -15,19 +15,22 @@ const TagsFilter = () => {
 
   const dispatch = useDispatch();
   const handleChange = (e) => {
-    if (e.target.id !== "All") {
+    if (e.target.id === "All") {
+      setSelected([]);
+    } else {
       setSelected(
         selected.includes(e.target.id)
           ? selected.filter((item) => item !== e.target.id)
           : [...selected, e.target.id]
       );
-      let query = `tags_like=(?<!\\s)\\b${e.target.id}\\b(?!\\s)`;
-      dispatch(setQuery(query));
-    } else setSelected([]);
+    }
+    let query = `tags_like=(?<!\\s)\\b${e.target.id}\\b(?!\\s)`;
+    dispatch(setQuery(query));
   };
 
   useEffect(() => {
     // if(selected.length){
+
     dispatch(getStockByBrands({ brands: selectBrands, selected: selected }));
     dispatch(getItems(querySelector));
     dispatch(getFilteredItemsNumber());

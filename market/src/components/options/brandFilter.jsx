@@ -21,15 +21,20 @@ const BrandFilter = () => {
   }, [search]);
 
   const handleChange = (e) => {
-    if (e.target.id !== "all-brands") {
+    // if (e.target.id !== "uncheck-brands") {
+    if (e.target.id === "uncheck-brands") {
+      setSelected([]);
+    } else {
       setSelected(
         selected.includes(e.target.id)
           ? selected.filter((item) => item !== e.target.id)
           : [...selected, e.target.id]
       );
-      let query = `manufacturer=${e.target.id}`;
-      dispatch(setQuery(query));
-    } else setSelected([]);
+    }
+    let query = `manufacturer=${e.target.id}`;
+    dispatch(setQuery(query));
+
+    // } else setSelected([]);
   };
 
   useEffect(() => {
@@ -59,7 +64,7 @@ const BrandFilter = () => {
                 className="custom-checkbox"
                 id={brand.brand.slug}
                 defaultChecked={
-                  brand.brand.slug === "all-brands"
+                  brand.brand.slug === "uncheck-brands"
                     ? !selected.length
                     : selected.includes(brand.brand.slug)
                 }
