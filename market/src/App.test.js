@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/prefer-screen-queries */
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
@@ -11,5 +12,9 @@ test('renders navbar with logo', () => {
     </Provider>
   );
 
-  expect(getByText(/learn/i)).toBeInTheDocument();
+  // eslint-disable-next-line testing-library/prefer-screen-queries
+  // expect(getByText(/learn/i)).toBeInTheDocument();
+
+  expect(getByText('Visible Details Example')).toBeVisible()
+
 });
