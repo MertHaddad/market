@@ -52,7 +52,7 @@ const TagsFilter = () => {
       />
       <div className="filter-body custom-scrollbar">
         {(searchResults.length ? searchResults : selectTags).map((tag, i) => (
-          <div key={i}>
+          tag.products ? <div key={i}>
             <input
               onChange={handleChange}
               type="checkbox"
@@ -67,7 +67,7 @@ const TagsFilter = () => {
                 </span>
             </label>
           </div>
-        ))}
+        :null))}
       </div>
     </>
   );

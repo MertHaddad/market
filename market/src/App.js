@@ -59,14 +59,14 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="container">
         <Suspense fallback={<Spinner/>}>
+      <div className="container">
         <Basket />
           <Products />
           <Options />
-        </Suspense>
       </div>
       <Footer/>
+        </Suspense>
     </>
   );
 }

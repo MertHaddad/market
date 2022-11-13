@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../features/basketSlice";
 import Spinner from "../spinner";
+import noProduct from "./../../assets/img/no-product.jpg";
 
 const Item = () => {
   const products = useSelector((state) => state.product);
@@ -33,7 +34,13 @@ const Item = () => {
             </div>
           ))
         ) : products.status === "fulfilled" ? (
-          <div>No products to show</div>
+          <div>
+            <div className="empty-cart">
+              <p className="fs-1">Oppsssss!! no products here :(</p>
+            <img alt="" width={600} src={noProduct} />
+            
+          </div>
+          </div>
         ) : (
           <Spinner />
         )}

@@ -59,7 +59,7 @@ button {
 .navbar {
   background-color: var(--primary-color);
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
   height: var(--navbar-height);
   padding: 0 var(--x-padding);
@@ -368,7 +368,17 @@ input[type="checkbox"]:checked:after {
   cursor: pointer;
 }
 
+.empty-cart{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  max-width: 70%;
+  margin: auto;
+  
 
+  /* flex-direction: "column"; */
+}
 
 
 /* basket styling */

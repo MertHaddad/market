@@ -8,30 +8,36 @@ import { getItems } from "../../features/productSlice";
 const Pagination = () => {
   const dispatch = useDispatch();
   const selectQuery = useSelector((state) => state.query.value);
+  const filteredProducts = useSelector((state) => state.filteredProducts);
   const [currentPage, setCurrentPage] = useState(1);
-  
-  const onPageChange = (p) => {
-    setCurrentPage(p);
-    const query = `_page=${p}&_limit=16`;
-    dispatch(setQuery(query));
-    dispatch(getItems(selectQuery));
-  };
-  
-  const filteredProducts = useSelector(state => state.filteredProducts)
 
-  
+  const onPageChange = (p) => {
+    if (currentPage !== p) {
+      setCurrentPage(p);
+      const query = `_page=${p}&_limit=16`;
+      dispatch(setQuery(query));
+      dispatch(getItems(selectQuery));
+    }
+  };
+
+  useEffect(() => {
+    onPageChange(1);
+  }, [filteredProducts.currentProductNumber]);
+
   let totalCount = filteredProducts.currentProductNumber;
   const siblingCount = 1;
   const pageSize = 16;
-  
+
   const paginationRange = usePagination({
     currentPage,
     totalCount,
     siblingCount,
     pageSize,
   });
+  // console.log("###################################");
+  // console.log(paginationRange);
 
-  if (currentPage === 0 || ((paginationRange?.length< 2) ) ) {
+  if (currentPage === 0 || paginationRange?.length < 2) {
     return null;
   }
 
@@ -82,7 +88,7 @@ const Pagination = () => {
         })}
         onClick={onNext}
       >
-         Next -- 
+        Next --
         <div className="arrow right" />
       </li>
     </ul>
