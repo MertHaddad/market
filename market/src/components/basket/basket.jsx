@@ -4,7 +4,7 @@ import Counter from "./counter";
 import emptyCart from "./../../assets/img/empty-cart.jpg";
 const Basket = () => {
   const selectBasket = useSelector((state) => state.basket);
-
+  
   return (
     <>
       <div className="basket basket-container custom-scrollbar">

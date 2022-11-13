@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import classnames from "classnames";
 import { usePagination, DOTS } from "./usePagination";
 import "./../../assets/css/pagination.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -34,8 +33,6 @@ const Pagination = () => {
     siblingCount,
     pageSize,
   });
-  // console.log("###################################");
-  // console.log(paginationRange);
 
   if (currentPage === 0 || paginationRange?.length < 2) {
     return null;
@@ -53,13 +50,12 @@ const Pagination = () => {
   return (
     <ul className="pagination-container">
       <li
-        className={classnames("pagination-item", {
-          disabled: currentPage === 1,
-        })}
+        className={`pagination-item ${currentPage === 1 ? "disabled" : ""}
+         )`}
         onClick={onPrevious}
       >
-        <div className="arrow left" />
-        -- Prev
+        {/* <div className="arrow left" /> */}
+        {"<"} Prev 
       </li>
       {paginationRange.map((pageNumber, i) => {
         if (pageNumber === DOTS) {
@@ -73,9 +69,9 @@ const Pagination = () => {
         return (
           <li
             key={i}
-            className={classnames("pagination-item", {
-              selected: pageNumber === currentPage,
-            })}
+            className={`pagination-item ${
+              pageNumber === currentPage ? "selected" : ""
+            }`}
             onClick={() => onPageChange(pageNumber)}
           >
             {pageNumber}
@@ -83,13 +79,13 @@ const Pagination = () => {
         );
       })}
       <li
-        className={classnames("pagination-item", {
-          disabled: currentPage === lastPage,
-        })}
+        className={`pagination-item ${
+          currentPage === lastPage ? "disabled" : ""
+        }`}
         onClick={onNext}
       >
-        Next --
-        <div className="arrow right" />
+         Next {">"}
+        {/* <div className="arrow right" /> */}
       </li>
     </ul>
   );

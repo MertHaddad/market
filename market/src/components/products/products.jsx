@@ -2,8 +2,6 @@ import React, { Suspense } from "react";
 import ToggleBar from "./toggleBar"
 import Item from "./item"
 import Pagination from "../pagination/pagination"
-import Spinner from "../spinner";
-import Footer from "../footer";
 const Products = ()=>{
 
     return(

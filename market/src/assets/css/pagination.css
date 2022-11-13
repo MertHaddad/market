@@ -43,21 +43,25 @@
     display: inline-block;
     width: 0.4em;
     height: 0.4em;
-    border-right: 0.12em solid var(--primary-color);
-    border-top: 0.12em solid var(--primary-color);
+
+    border-right: 0.12em solid rgba(0, 0, 0, 0.87);
+    border-top: 0.12em solid rgba(0, 0, 0, 0.87);
 }
 .pagination-container .pagination-item .arrow.left {
     transform: rotate(-135deg) translate(-50%);
+    margin: 0 10px;
 }
 .pagination-container .pagination-item .arrow.right {
     transform: rotate(45deg);
+    margin: 0 10px;
 }
+
 .pagination-container .pagination-item.disabled {
     pointer-events: none;
 }
 .pagination-container .pagination-item.disabled .arrow::before {
-    border-right: 0.12em solid var(--primary-color);
-    border-top: 0.12em solid var(--primary-color);
+    border-right: 0.12em solid rgba(0, 0, 0, 0.43);
+    border-top: 0.12em solid rgba(0, 0, 0, 0.43);
 }
 .pagination-container .pagination-item.disabled:hover {
     background-color: transparent;

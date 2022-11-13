@@ -17,7 +17,7 @@ export const getItems = createAsyncThunk("getItems/api", async (query = []) => {
 export const productSlice = createSlice({
   name: "products",
   initialState,
-  reducers: { fillProducts: (state, action) => (state.value = action.payload) },
+  // reducers: { fillProducts: (state, action) => (state.value = action.payload) },
   extraReducers: (builder) => {
     builder
       .addCase(getItems.pending, (state) => {
