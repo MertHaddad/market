@@ -23,6 +23,7 @@
   grid-auto-flow: row;
 }
 
+
 .basket {
   grid-area: 1 / 10 / 6 / 13;
   max-width: max-content;
@@ -38,7 +39,16 @@
   grid-area: 1 / 1 / 6 / 4;
 }
 
+
+
+
 .footer {
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 4rem 0;
 }
 
 button {
@@ -83,8 +93,6 @@ button {
   justify-content: center;
   padding: 1.2rem;
   background-color: #FEFEFE;
-  /* width: 7rem;
-  height: 7rem; */
   border: 1.18px solid #F3F0FE;
   border-radius: 12px;
 }
@@ -92,19 +100,20 @@ button {
   scale: 1.02;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.13);
 }
-.product-title {
-  font-weight: 600;
-  margin: 0 0 0.9rem 0;
-}
 .product-price {
   color: var(--primary-color);
   font-weight: 600;
-  margin: 0rem 0 0.1rem 0;
+  padding: 0.3rem 0
+}
+.product-title {
+  padding: 0.2rem 0;
+  font-weight: 600;
 }
 .product-button {
   background-color: var(--primary-color);
   color: white;
   cursor: pointer;
+  padding: 0.2rem 0;
 }
 .product-button:hover {
   background-color: var(--secondary-color);
@@ -112,19 +121,21 @@ button {
 }
 
 .products-container {
+  /* padding: 0.4rem; */
   display: flex;
   flex-wrap: wrap;
   background-color: white;
   align-content: flex-start;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .product-card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 0.3rem 0.4rem;
-  width: 8.5rem;
+  /* margin: 0.3rem 0.4rem; */
+  margin: 0.8rem;
+  width: 9.0rem;
 }
 
 /* product card styling */
@@ -363,3 +374,35 @@ input[type="checkbox"]:checked:after {
 /* basket styling */
 
 
+
+@media screen and (max-width:1100px){
+  .container {
+    padding: 1rem;
+    grid-template-rows: 1fr;
+        /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 18px;
+    grid-auto-flow: row; */
+  }
+  
+    .navbar {
+    padding: 1rem}
+
+    .navbar > .button {
+      padding: 1rem 0.5rem;
+    }
+  .basket {
+    grid-area: 1 / 1 / 2 / 13;
+    max-width: max-content;
+    max-width: 100%;
+  
+  }
+  
+  .products {
+    grid-area: 2 / 1 / 4 / 13;
+  }
+  
+  .filters {
+    grid-area: 4 / 1 / 6 / 13;
+  }
+  }

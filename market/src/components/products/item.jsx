@@ -13,21 +13,20 @@ const Item = () => {
         {products.value.length ? (
           products.value.map((item, i) => (
             <div className="product-card" key={i}>
-              <p className="product-thumbnail">
+              <span className="product-thumbnail">
                 <img
-                  width={85}
-                  height={85}
+                  width={90}
                   alt=""
                   src={require(`./../../assets/img/thumbnails/thumbnail${
                     item.name.length + Math.floor(item.price) - 6 - i
                   }.jpg`)}
                 />
-              </p>
-              <p className="product-price">₺ {item.price}</p>
-              <p className="product-title text-default">{item.name}</p>
+              </span>
+              <span className="product-price">₺ {item.price}</span>
+              <span className="product-title text-default">{item.name}</span>
               <button
                 onClick={() => dispatch(addProduct({ product: item }))}
-                className="product-button"
+                className="product-button text-bold fs-3"
               >
                 Add
               </button>

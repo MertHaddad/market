@@ -19,12 +19,6 @@ const Pagination = () => {
   
   const filteredProducts = useSelector(state => state.filteredProducts)
 
-//   useEffect(()=>{
-//     if(allProductsSelector.status==="fulfilled"){
-//     setItemCounts(allProductsSelector.currentProductNumber)
-//       console.log(allProductsSelector.currentProductNumber);}
-//   },[allProductsSelector.status])
-
   
   let totalCount = filteredProducts.currentProductNumber;
   const siblingCount = 1;
@@ -59,7 +53,7 @@ const Pagination = () => {
         onClick={onPrevious}
       >
         <div className="arrow left" />
-        Prev
+        -- Prev
       </li>
       {paginationRange.map((pageNumber, i) => {
         if (pageNumber === DOTS) {
@@ -88,7 +82,7 @@ const Pagination = () => {
         })}
         onClick={onNext}
       >
-        Next
+         Next -- 
         <div className="arrow right" />
       </li>
     </ul>
