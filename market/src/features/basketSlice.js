@@ -1,5 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchCount } from "./counterAPI";
+import {  createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   payment: 0,
@@ -19,11 +18,8 @@ const handleQuantityChange = (state, action) => {
     let checkQuantity = state.basketProducts.find(
       (product) => product.name === action.product
     );
-    console.log(checkQuantity.quantity);
     if(checkQuantity.quantity === 0){
-      console.log("delete me pleaseeee");
       state.basketProducts = state.basketProducts.filter(product=> product.name!==checkQuantity.name) 
-      console.log(state.basketProducts);
     }
   }
 };
@@ -63,9 +59,6 @@ export const basketSlice = createSlice({
 
 export const { addProduct, setQuantity } = basketSlice.actions;
 
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectBasket = (state) => state.counter;
 
 export default basketSlice.reducer;

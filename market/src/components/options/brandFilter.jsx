@@ -57,7 +57,7 @@ const BrandFilter = () => {
                 id={brand.brand.slug}
                 defaultChecked={selected.includes(brand.brand.slug)}
               />
-              <label className="filtering-label" htmlFor={brand.brand.slug}>
+              <label className="filtering-label text-secondary" htmlFor={brand.brand.slug}>
                 {brand.brand.name}
                 <span className="text-dark-gray"> ({brand.products})</span>
               </label>

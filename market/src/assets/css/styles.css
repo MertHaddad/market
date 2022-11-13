@@ -15,9 +15,8 @@
 }
 
 .container {
-  margin-top: 1.7rem;
+  padding: 2.7rem var(--x-padding);
   display: grid;
-  padding: 1rem var(--x-padding);
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   gap: 0px 18px;
@@ -25,9 +24,10 @@
 }
 
 .basket {
-  grid-area: 1 / 10 / auto / 13;
-  border: 9px solid var(--primary-color);
-  background-color: white;
+  grid-area: 1 / 10 / 6 / 13;
+  max-width: max-content;
+  max-width: 100%;
+
 }
 
 .products {
@@ -82,9 +82,10 @@ button {
   align-content: center;
   justify-content: center;
   padding: 1.2rem;
+  background-color: #FEFEFE;
   /* width: 7rem;
   height: 7rem; */
-  border: 1px solid var(--gray-color);
+  border: 1.18px solid #F3F0FE;
   border-radius: 12px;
 }
 .product-thumbnail > img:hover {
@@ -288,13 +289,67 @@ input[type="checkbox"]:checked:after {
 
 
 /* basket styling */
+.basket-container{
+  padding: 1.35rem;
+  background-color: white;
+  max-height: 19vh;
+  overflow-y: auto;
+  border: 9px solid var(--primary-color);
+}
+
 .basket-item{
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--gray-color);
+}
+
   
+.parent {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  align-items: center;
+  }
+.counter-parent { grid-area: 1 / 4 / 3 / 7; }
+.price-parent { grid-area: 2 / 1 / 3 / 4; }
+.basket-product-name{
+  grid-area: 1 / 1 / 2 / 4;
+}
+
+.counter-container{
+  display: flex;
+  justify-content: flex-end
+
+
+}
+
+.quantity-button{
+  vertical-align: middle;
+  background-color: transparent;
+  color: var(--primary-color);
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius:0 !important ;
+}
+.counter{
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius:0 !important ;
+  background-color: var(--primary-color);
+  font-weight: 600;
+  color: white;
+}
+
+.basket-button-container{
+  display: flex;
+  justify-content: flex-end;
 }
 
 .basket-button{
+  margin-top: 1.35rem;
   padding: 0.9rem 1.5rem;
-  margin: 1rem;
+  /* margin: 1rem; */
   border: 2px solid var(--primary-color);
   background-color: transparent;
   color: var(--primary-color);
@@ -302,4 +357,9 @@ input[type="checkbox"]:checked:after {
   cursor: pointer;
 }
 
+
+
+
 /* basket styling */
+
+

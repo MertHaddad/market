@@ -11,12 +11,21 @@
 }
 
 .text-secondary{
-    color: var(--secondary-color);
+    color: #525252;
 }
 
 .secondary-button{
     background-color: var(--secondary-button);
 }
+
+.text-default{
+color: #191919;    
+}
+
+.text-light-white{
+    color: #F2F0FD;
+}
+
 
 .text-white{
     color: white;

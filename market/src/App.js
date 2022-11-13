@@ -16,6 +16,7 @@ import {
   getTags,
 } from "./features/allProductsSlice";
 import { getFilteredItemsNumber } from "./features/filteredProducts";
+import Spinner from "./components/spinner";
 const Options = React.lazy(() => import("./components/options/options"));
 
 function App() {
@@ -58,13 +59,13 @@ function App() {
     <>
       <Navbar />
       <div className="container">
+        <Suspense fallback={<Spinner/>}>
         <Basket />
-        <Suspense fallback={<div className="fs-1 text-primay">loading...</div>}>
           <Products />
           <Options />
+      <Footer />
         </Suspense>
       </div>
-      <Footer />
     </>
   );
 }

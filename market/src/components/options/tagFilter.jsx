@@ -61,8 +61,8 @@ const TagsFilter = () => {
               id={tag.tag}
               defaultChecked={selected.includes(tag.tag)}
             />
-            <label className="filtering-label" htmlFor={tag.tag}>
-              {tag.tag} <span className="text-dark-gray">
+            <label className="filtering-label text-secondary" htmlFor={tag.tag}>
+              {tag.tag} <span className="text-dark-gray ">
               ({tag.products})
                 </span>
             </label>

@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import ToggleBar from "./toggleBar"
 import Item from "./item"
 import Pagination from "../pagination/pagination"
+import Spinner from "../spinner";
 const Products = ()=>{
 
     return(
@@ -9,9 +10,9 @@ const Products = ()=>{
         <div className="products">
         <span className="d-block fs-1 text-bold text-darkest-gray">Products </span>
         <ToggleBar/>
+        <Suspense fallback={<Spinner/>} >
         <Item/>
-        <Suspense fallback="..." >
-        <Pagination/>
+        {/* <Pagination/> */}
 
         </Suspense>
         </div>

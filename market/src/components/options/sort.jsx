@@ -41,7 +41,7 @@ const Sort = () => {
             className="custom-radio"
             name="sort-radio"
           />
-          <label className="sorting-label" htmlFor={input.name}>{input.label}</label>
+          <label className="sorting-label text-secondary" htmlFor={input.name}>{input.label}</label>
         </div>
       ))}
     </>
