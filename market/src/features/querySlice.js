@@ -1,11 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { value: ["?_page=1&_limit=16"]};
+const initialState = { value: ["?_page=1&_limit=16"] };
+
+const manageQueries = (que, state, action) => {
+  const findElement = state.find((x) =>
+    (que === "_page" ? /_page/ : que === "itemType" ? /itemType/ : /sort/).test(
+      x
+    )
+  );
+  const filterResult = state.filter((x) => x !== findElement);
+  console.log(filterResult);
+  const resutlt = [...filterResult, action.payload];
+  return resutlt;
+};
 
 const evaluateQuery = (state, action) => {
-  let result = []; 
-  console.log(action.payload);
-
+  let result = [];
   const sameFilterExists = state.includes(action.payload);
   const pageChanged = /_page=/.test(action.payload);
   const typeFilterExists =
@@ -15,21 +25,15 @@ const evaluateQuery = (state, action) => {
   if (sameFilterExists) {
     result = state.filter((query) => query !== action.payload);
   } else if (pageChanged) {
-    const findElement = state.find((x) => /_page/.test(x));
-    const filterResult = state.filter((query) => query !== findElement);
-    result = [...filterResult, action.payload];
+    result = manageQueries("_page", state, action);
   } else if (typeFilterExists) {
-    const findElement = state.find((x) => /itemType/.test(x));
-    const filterResult = state.filter((query) => query !== findElement);
-    result = [...filterResult, action.payload];
+    result = manageQueries("itemType", state, action);
   } else if (sortFilterExists) {
-    const findElement = state.find((x) => /sort/.test(x));
-    const filterResult = state.filter((query) => query !== findElement);
-    result = [...filterResult, action.payload];
+    result = manageQueries("sort", state, action);
   } else {
     result = [...state, action.payload];
   }
-  return { value: result};
+  return { value: result };
 };
 
 export const querySlice = createSlice({

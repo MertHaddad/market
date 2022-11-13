@@ -12,6 +12,9 @@
 
 .container * {
   border-radius: 2px;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 .container {
@@ -23,12 +26,10 @@
   grid-auto-flow: row;
 }
 
-
 .basket {
   grid-area: 1 / 10 / 6 / 13;
   max-width: max-content;
   max-width: 100%;
-
 }
 
 .products {
@@ -38,9 +39,6 @@
 .filters {
   grid-area: 1 / 1 / 6 / 4;
 }
-
-
-
 
 .footer {
   position: absolute;
@@ -92,8 +90,8 @@ button {
   align-content: center;
   justify-content: center;
   padding: 1.2rem;
-  background-color: #FEFEFE;
-  border: 1.18px solid #F3F0FE;
+  background-color: #fefefe;
+  border: 1.18px solid #f3f0fe;
   border-radius: 12px;
 }
 .product-thumbnail > img:hover {
@@ -103,7 +101,7 @@ button {
 .product-price {
   color: var(--primary-color);
   font-weight: 600;
-  padding: 0.3rem 0
+  padding: 0.3rem 0;
 }
 .product-title {
   padding: 0.2rem 0;
@@ -135,7 +133,7 @@ button {
   justify-content: space-between;
   /* margin: 0.3rem 0.4rem; */
   margin: 0.8rem;
-  width: 9.0rem;
+  width: 9rem;
 }
 
 /* product card styling */
@@ -259,7 +257,6 @@ input[type="checkbox"] {
   background: transparent;
   padding: 0;
   border-radius: 2px !important;
-  
 }
 
 input[type="checkbox"]:checked:after {
@@ -277,7 +274,7 @@ input[type="checkbox"]:checked:after {
 .custom-checkbox {
   accent-color: #1f9fc6;
   height: 22px;
-  width: 22px; 
+  width: 22px;
 }
 /* filter container styles */
 
@@ -298,9 +295,8 @@ input[type="checkbox"]:checked:after {
 }
 /* scrollbar style */
 
-
 /* basket styling */
-.basket-container{
+.basket-container {
   padding: 1.35rem;
   background-color: white;
   max-height: 19vh;
@@ -308,12 +304,11 @@ input[type="checkbox"]:checked:after {
   border: 9px solid var(--primary-color);
 }
 
-.basket-item{
+.basket-item {
   padding: 1rem 0;
   border-bottom: 1px solid var(--gray-color);
 }
 
-  
 .parent {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -321,43 +316,45 @@ input[type="checkbox"]:checked:after {
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   align-items: center;
-  }
-.counter-parent { grid-area: 1 / 4 / 3 / 7; }
-.price-parent { grid-area: 2 / 1 / 3 / 4; }
-.basket-product-name{
+}
+.counter-parent {
+  grid-area: 1 / 4 / 3 / 7;
+}
+.price-parent {
+  grid-area: 2 / 1 / 3 / 4;
+}
+.basket-product-name {
   grid-area: 1 / 1 / 2 / 4;
 }
 
-.counter-container{
+.counter-container {
   display: flex;
-  justify-content: flex-end
-
-
+  justify-content: flex-end;
 }
 
-.quantity-button{
+.quantity-button {
   vertical-align: middle;
   background-color: transparent;
   color: var(--primary-color);
   width: 2.3rem;
   height: 2.3rem;
-  border-radius:0 !important ;
+  border-radius: 0 !important ;
 }
-.counter{
+.counter {
   width: 2.3rem;
   height: 2.3rem;
-  border-radius:0 !important ;
+  border-radius: 0 !important ;
   background-color: var(--primary-color);
   font-weight: 600;
   color: white;
 }
 
-.basket-button-container{
+.basket-button-container {
   display: flex;
   justify-content: flex-end;
 }
 
-.basket-button{
+.basket-button {
   margin-top: 1.35rem;
   padding: 0.9rem 1.5rem;
   /* margin: 1rem; */
@@ -368,51 +365,47 @@ input[type="checkbox"]:checked:after {
   cursor: pointer;
 }
 
-.empty-cart{
+.empty-cart {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   max-width: 70%;
   margin: auto;
-  
 
   /* flex-direction: "column"; */
 }
 
-
 /* basket styling */
 
-
-
-@media screen and (max-width:1100px){
+@media screen and (max-width: 1100px) {
   .container {
     padding: 1rem;
     grid-template-rows: 1fr;
-        /* display: grid;
+    /* display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 0px 18px;
     grid-auto-flow: row; */
   }
-  
-    .navbar {
-    padding: 1rem}
 
-    .navbar > .button {
-      padding: 1rem 0.5rem;
-    }
+  .navbar {
+    padding: 1rem;
+  }
+
+  .navbar > .button {
+    padding: 1rem 0.5rem;
+  }
   .basket {
     grid-area: 1 / 1 / 2 / 13;
     max-width: max-content;
     max-width: 100%;
-  
   }
-  
+
   .products {
     grid-area: 2 / 1 / 4 / 13;
   }
-  
+
   .filters {
     grid-area: 4 / 1 / 6 / 13;
   }
-  }
+}
